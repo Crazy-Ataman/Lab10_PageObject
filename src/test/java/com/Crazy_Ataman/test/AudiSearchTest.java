@@ -4,6 +4,7 @@ import com.Crazy_Ataman.page.AudiHomePagePF;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
@@ -13,7 +14,9 @@ public class AudiSearchTest {
     @BeforeEach
     @DisplayName("Setup Chrome Driver")
     public void initializeDriver() {
-        driver = new ChromeDriver();
+        final ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
         driver.manage().window().maximize();
     }

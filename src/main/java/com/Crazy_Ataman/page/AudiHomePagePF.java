@@ -1,9 +1,6 @@
 package com.Crazy_Ataman.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,9 +16,6 @@ public class AudiHomePagePF extends AbstractPage {
     @FindBy(id = "search__basic")
     private WebElement searchInputElement;
 
-//    @FindBy(xpath = "//span[@class='sc-fznKkj dTlhdB']")
-//    private WebElement searchResults;
-
     public AudiHomePagePF(WebDriver driver) {
         super(driver);
     }
@@ -32,9 +26,10 @@ public class AudiHomePagePF extends AbstractPage {
     }
 
     public AudiHomePagePF clickMagnifier() {
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(
-                        ExpectedConditions.elementToBeClickable(magnifierButton))
-                .click();
+//        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(
+//                        ExpectedConditions.elementToBeClickable(magnifierButton))
+//                .click();
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", magnifierButton);
         return this;
     }
 
