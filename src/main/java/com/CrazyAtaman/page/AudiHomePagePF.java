@@ -1,4 +1,4 @@
-package com.Crazy_Ataman.page;
+package com.CrazyAtaman.page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
@@ -15,6 +15,9 @@ public class AudiHomePagePF extends AbstractPage {
 
     @FindBy(id = "search__basic")
     private WebElement searchInputElement;
+
+    @FindBy(xpath = "//*[@id=\"audi-header\"]/div/div[1]/div[2]/div[5]/div[1]/div[2]/div/div[1]/div[2]/div[2]/div/div[1]/a[2]/span")
+    private WebElement q3Button;
 
     public AudiHomePagePF(WebDriver driver) {
         super(driver);
@@ -33,12 +36,29 @@ public class AudiHomePagePF extends AbstractPage {
         return this;
     }
 
-    public AudiHomePagePF inputAndEnterSearch() {
+    public AudiHomePagePF inputAndEnterSearchA5() {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(
                         ExpectedConditions.elementToBeClickable(searchInputElement))
                 .sendKeys("A5");
         searchInputElement.sendKeys(Keys.ENTER);
         return this;
+    }
+
+    public AudiHomePagePF inputAndEnterSearchQ3() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS).until(
+                        ExpectedConditions.elementToBeClickable(searchInputElement))
+                .sendKeys("Q3");
+        searchInputElement.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public AudiHomePagePF clickQ3Button() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", q3Button);
+        return this;
+    }
+
+    public String getPageUrl() {
+        return driver.getCurrentUrl();
     }
 
     public List<WebElement> getListOfSearchResults() {

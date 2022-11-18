@@ -1,6 +1,6 @@
-package com.Crazy_Ataman.test;
+package com.CrazyAtaman.test;
 
-import com.Crazy_Ataman.page.AudiHomePagePF;
+import com.CrazyAtaman.page.AudiHomePagePF;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
-public class AudiSearchTest {
+class AudiSearchTest {
     private WebDriver driver;
 
     @BeforeEach
@@ -28,9 +28,24 @@ public class AudiSearchTest {
         AudiHomePagePF audiHomePagePF =
                 new AudiHomePagePF(driver).openPage()
                         .clickMagnifier()
-                        .inputAndEnterSearch();
+                        .inputAndEnterSearchA5();
         Assertions.assertTrue(audiHomePagePF.getListOfSearchResults().size() > 0,
                 "Search results are empty!");
+        Thread.sleep(5000);
+    }
+
+    @Test
+    @DisplayName("Test: search input and results")
+    void clickMagnifierButtonAndInputTextAndPressEnterAndCheckPageUrl()
+            throws InterruptedException {
+        AudiHomePagePF audiHomePagePF =
+                new AudiHomePagePF(driver).openPage()
+                        .clickMagnifier()
+                        .inputAndEnterSearchQ3();
+        audiHomePagePF.clickQ3Button();
+        Assertions.assertEquals(
+                "https://www.audi.by/by/web/ru/models/q3.html",
+                audiHomePagePF.getPageUrl());
         Thread.sleep(5000);
     }
 
